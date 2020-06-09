@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+input[type=text],input[type=number], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.success {
+    background-color: rgba(0,255,0,0.5);
+    width:100%;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2><%= title %></h2>
+    <%- include ('./menu.ejs') %>
+    <center>
+        <% if(success != ''){ %>
+            <h3 class="success"> <%=  success %> </h3>
+        <% } %>    
+    </center>
+
+  <form action="/addUser" method="post" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-25">
+      <label for="name">Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="name" name="name" placeholder="Your name.." required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="email">Email</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="email" name="email" placeholder="Email" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="level">Level</label>
+    </div>
+    <div class="col-75">
+      <select id="level" name="level" required>
+        <option value="Gold">Gold</option>
+        <option value="Platinium">Platinium</option>
+        <option value="Diamond">Diamond</option>
+        <option value="Ace">Ace</option>
+        <option value="Conquorer">Conquorer</option>
+    </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="kills">Kills</label>
+    </div>
+    <div class="col-75">
+      <input type="number" id="kills" name="kills" placeholder="Kills" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="matches">Matches Played</label>
+    </div>
+    <div class="col-75">
+      <input type="number" id="matches" name="matches" placeholder="Matches Played" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="avatar">Avatar</label>
+    </div>
+    <div class="col-75">
+      <input type="file" id="file" name="file" required>
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <input type="submit" name="submit" value="Save">
+  </div>
+  </form>
+</div>
+
+</body>
+</html>
